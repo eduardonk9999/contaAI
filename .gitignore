@@ -1,0 +1,76 @@
+# ---------- Geral ----------
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+.idea/
+.vscode/
+!.vscode/extensions.json
+
+# ---------- Ambiente e segredos ----------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+secrets/
+service-account*.json
+
+# ---------- Node / Backend ----------
+node_modules/
+dist/
+build/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Supabase
+.branches/
+.temp/
+supabase/.temp/
+
+# ---------- Flutter / Dart ----------
+app/.dart_tool/
+app/.packages
+app/.pub-cache/
+app/.pub/
+app/build/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+
+# iOS
+app/ios/Pods/
+app/ios/.symlinks/
+app/ios/Flutter/Flutter.framework
+app/ios/Flutter/Flutter.podspec
+app/ios/Flutter/App.framework
+app/ios/Flutter/flutter_export_environment.sh
+app/ios/Flutter/Generated.xcconfig
+app/ios/Runner/GeneratedPluginRegistrant.*
+**/*.xcworkspace/xcuserdata/
+**/xcuserdata/
+
+# Android
+app/android/.gradle/
+app/android/local.properties
+app/android/app/debug/
+app/android/app/profile/
+app/android/app/release/
+app/android/key.properties
+app/android/**/GeneratedPluginRegistrant.java
+
+# ---------- Uploads temporarios (audio de transcricao) ----------
+uploads/
+tmp/
