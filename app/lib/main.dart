@@ -1,9 +1,13 @@
 import 'dart:convert';
+import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-void main() => runApp(const ContaAiApp());
+@JS('startContaPlusSpeechRecognition')
+external JSPromise<JSString> startContaPlusSpeechRecognition();
+
+void main() => runApp(const ContaPlusApp());
 const apiUrl = String.fromEnvironment(
   'API_URL',
   defaultValue: 'http://localhost:3333',
@@ -32,12 +36,12 @@ class Api {
 String brl(num cents) =>
     'R\$ ${(cents / 100).toStringAsFixed(2).replaceAll('.', ',')}';
 
-class ContaAiApp extends StatelessWidget {
-  const ContaAiApp({super.key});
+class ContaPlusApp extends StatelessWidget {
+  const ContaPlusApp({super.key});
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'ContAI',
+    title: 'Conta+',
     theme: ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF2563EB)),
@@ -137,11 +141,11 @@ class SideNav extends StatelessWidget {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: 'Cont',
+                    text: 'Conta',
                     style: TextStyle(fontSize: 27, fontWeight: FontWeight.w800),
                   ),
                   TextSpan(
-                    text: 'AI',
+                    text: '+',
                     style: TextStyle(
                       fontSize: 27,
                       fontWeight: FontWeight.w800,
@@ -447,7 +451,29 @@ class _SaleState extends State<Sale> {
     text: 'vendi duas camisetas por cinquenta reais cada',
   );
   dynamic preview;
-  bool busy = false;
+  bool busy = false, listening = false, fromVoice = false;
+
+  Future<void> listen() async {
+    if (listening || busy) return;
+    setState(() {
+      listening = true;
+      preview = null;
+    });
+    try {
+      final transcript =
+          (await startContaPlusSpeechRecognition().toDart).toDart;
+      text.text = transcript;
+      fromVoice = true;
+      if (mounted) setState(() {});
+      await interpret();
+    } catch (e) {
+      final detail = e.toString().replaceFirst('Error: ', '');
+      message('Falha no microfone: $detail');
+    } finally {
+      if (mounted) setState(() => listening = false);
+    }
+  }
+
   Future<void> interpret() async {
     setState(() => busy = true);
     try {
@@ -473,7 +499,7 @@ class _SaleState extends State<Sale> {
               },
             )
             .toList(),
-        'source': 'TEXT',
+        'source': fromVoice ? 'VOICE' : 'TEXT',
         'original_input': text.text,
         'idempotency_key': id(),
       });
@@ -510,7 +536,7 @@ class _SaleState extends State<Sale> {
   @override
   Widget build(BuildContext context) => Frame(
     title: 'Registrar venda',
-    subtitle: 'Conte o que vendeu do seu jeito. O ContAI organiza para você.',
+    subtitle: 'Conte o que vendeu do seu jeito. O Conta+ organiza para você.',
     child: Column(
       children: [
         Panel(
@@ -529,6 +555,7 @@ class _SaleState extends State<Sale> {
               const SizedBox(height: 16),
               TextField(
                 controller: text,
+                onChanged: (_) => fromVoice = false,
                 minLines: 3,
                 maxLines: 5,
                 decoration: const InputDecoration(
@@ -552,9 +579,9 @@ class _SaleState extends State<Sale> {
                   ),
                   const SizedBox(width: 10),
                   IconButton.filledTonal(
-                    onPressed: () =>
-                        message('Áudio será ativado com a chave da OpenAI.'),
-                    icon: const Icon(Icons.mic_none),
+                    tooltip: listening ? 'Ouvindo...' : 'Registrar por voz',
+                    onPressed: busy || listening ? null : listen,
+                    icon: Icon(listening ? Icons.graphic_eq : Icons.mic_none),
                   ),
                 ],
               ),
@@ -781,7 +808,7 @@ class About extends StatelessWidget {
   const About({super.key});
   @override
   Widget build(BuildContext context) => const Frame(
-    title: 'Sobre o ContAI',
+    title: 'Sobre o Conta+',
     subtitle: 'Menos tempo fazendo conta. Mais tempo vendendo.',
     child: Panel(
       child: Column(
@@ -793,7 +820,7 @@ class About extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Text(
-            'O ContAI transforma uma frase em venda, estoque e lucro, sempre mostrando uma prévia antes de registrar.',
+            'O Conta+ transforma uma frase em venda, estoque e lucro, sempre mostrando uma prévia antes de registrar.',
           ),
           SizedBox(height: 20),
           Text(

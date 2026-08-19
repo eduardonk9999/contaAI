@@ -1,8 +1,8 @@
-# Regras de Negócio - ContAI
+# Regras de Negócio - Conta+
 
 ## Visão Geral
 
-ContAI é um **copiloto financeiro com controle de estoque** para pequenos comerciantes (vendedor de pipoca, dono de loja, ambulante, MEI).
+Conta+ é um **assistente de vendas por voz com controle de estoque** para pequenos comerciantes (vendedor de pipoca, dono de loja, ambulante, MEI).
 
 O usuário fala ou digita naturalmente:
 - *"vendi 5 pipocas"*

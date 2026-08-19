@@ -1,8 +1,8 @@
-# Modelo de Negócio e Monetização — ContAI
+# Modelo de Negócio e Monetização — Conta+
 
 ## Proposta de valor
 
-O ContAI ajuda pequenos comerciantes a saber quanto venderam, quanto lucraram e o que precisam repor. O diferencial é permitir que o vendedor registre sua operação falando ou escrevendo naturalmente, sem depender de planilhas ou sistemas complexos.
+O Conta+ ajuda pequenos comerciantes a saber quanto venderam, quanto lucraram e o que precisam repor. O diferencial é permitir que o vendedor registre sua operação falando ou escrevendo naturalmente, sem depender de planilhas ou sistemas complexos.
 
 ## Modelo de receita
 
@@ -80,11 +80,11 @@ Plano Pro: R$ 34,90
 Equivale ao lucro de menos de duas vendas no mês
 ```
 
-> Se o ContAI evitar uma perda de estoque ou ajudar a corrigir o preço de um produto, a mensalidade pode se pagar no próprio dia.
+> Se o Conta+ evitar uma perda de estoque ou ajudar a corrigir o preço de um produto, a mensalidade pode se pagar no próprio dia.
 
 Essa afirmação deve ser apresentada como exemplo, não como resultado comprovado.
 
-## Economia e margem do ContAI
+## Economia e margem do Conta+
 
 ```text
 Margem bruta = (mensalidade - custos variáveis) / mensalidade × 100
@@ -128,9 +128,9 @@ Dados pessoais ou financeiros não devem ser vendidos.
 
 ## Resposta curta para jurados
 
-> O ContAI adota um modelo freemium. O comerciante experimenta gratuitamente e pode contratar o plano Solo por R$ 14,90 por mês ou o Pro por R$ 34,90, conforme seu volume. As franquias de texto e áudio mantêm o produto acessível para o vendedor e o custo de inteligência artificial previsível para a empresa. Para um pipoqueiro, o Solo pode equivaler ao lucro de aproximadamente cinco vendas no mês.
+> O Conta+ adota um modelo freemium. O comerciante experimenta gratuitamente e pode contratar o plano Solo por R$ 14,90 por mês ou o Pro por R$ 34,90, conforme seu volume. As franquias de texto e áudio mantêm o produto acessível para o vendedor e o custo de inteligência artificial previsível para a empresa. Para um pipoqueiro, o Solo pode equivaler ao lucro de aproximadamente cinco vendas no mês.
 
 ## Diferencial competitivo
 
-> O ContAI transforma uma frase ou áudio em venda, atualização de estoque e cálculo de lucro, sempre mostrando uma prévia para confirmação. A experiência atende quem hoje controla o negócio de cabeça, no caderno ou pelo WhatsApp.
+> O Conta+ transforma uma frase ou áudio em venda, atualização de estoque e cálculo de lucro, sempre mostrando uma prévia para confirmação. A experiência atende quem hoje controla o negócio de cabeça, no caderno ou pelo WhatsApp.
 

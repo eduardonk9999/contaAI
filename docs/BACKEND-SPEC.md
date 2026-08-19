@@ -1,8 +1,8 @@
-# Especificação do Backend — ContAI
+# Especificação do Backend — Conta+
 
 ## 1. Objetivo
 
-O ContAI é um aplicativo mobile para lojistas, vendedores autônomos e pequenos comerciantes controlarem vendas, lucro e estoque por texto, áudio ou lançamento manual.
+O Conta+ é um aplicativo mobile para lojistas, vendedores autônomos e pequenos comerciantes controlarem vendas, lucro e estoque por texto, áudio ou lançamento manual.
 
 O fluxo principal deve ser simples:
 

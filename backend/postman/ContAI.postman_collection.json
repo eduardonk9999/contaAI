@@ -1,7 +1,7 @@
 {
   "info": {
-    "name": "ContAI Backend MVP",
-    "description": "Rotas locais do backend ContAI. Execute na ordem indicada.",
+    "name": "Conta+ Backend MVP",
+    "description": "Rotas locais do backend Conta+. Execute na ordem indicada.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -25,7 +25,7 @@
       "request": {
         "method": "POST",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Caneca ContAI {{$timestamp}}\",\n  \"cost_price_cents\": 1500,\n  \"sale_price_cents\": 3000,\n  \"stock_quantity\": 10,\n  \"stock_unit\": \"UNIT\",\n  \"min_stock_quantity\": 2\n}" },
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Caneca Conta+ {{$timestamp}}\",\n  \"cost_price_cents\": 1500,\n  \"sale_price_cents\": 3000,\n  \"stock_quantity\": 10,\n  \"stock_unit\": \"UNIT\",\n  \"min_stock_quantity\": 2\n}" },
         "url": "{{base_url}}/v1/products"
       },
       "event": [{ "listen": "test", "script": { "exec": ["pm.test('Produto criado', () => pm.response.to.have.status(201));"] } }]

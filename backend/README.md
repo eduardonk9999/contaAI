@@ -1,4 +1,4 @@
-# Backend ContAI
+# Backend Conta+
 
 API do MVP em Fastify, TypeScript e SQLite.
 
@@ -21,6 +21,7 @@ A API inicia em `http://localhost:3333`. Na primeira execução, o banco e os pr
 - `POST /v1/products/:productId/stock-adjustments`
 - `GET /v1/products/:productId/stock-movements`
 - `POST /v1/sales/preview`
+- O reconhecimento de voz acontece no navegador; o texto reconhecido usa `POST /v1/sales/preview`.
 - `POST /v1/sales/confirm`
 - `GET /v1/transactions`
 - `GET /v1/dashboard/summary`

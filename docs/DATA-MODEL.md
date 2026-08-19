@@ -1,4 +1,4 @@
-# Modelagem de Dados — ContAI
+# Modelagem de Dados — Conta+
 
 ## Estratégia para a entrega de hoje
 

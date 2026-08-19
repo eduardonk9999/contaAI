@@ -1,17 +1,14 @@
-# App
+# App Conta+
 
-Este diretório será usado para o aplicativo Flutter do ContAI.
+Aplicativo Flutter Web responsivo do Conta+.
 
-Responsabilidades previstas:
+Funcionalidades do MVP:
 
-- Autenticação e criação da loja.
-- Cadastro e consulta de produtos.
-- Visualização e ajuste do estoque.
-- Lançamentos manuais, por texto e por áudio.
+- Consulta de produtos e estoque.
+- Lançamentos por texto e voz.
 - Revisão e confirmação das prévias.
-- Histórico, dashboard e alertas.
+- Resumo de faturamento, lucro, margem e estoque.
 
 Os modelos e estados do Flutter deverão seguir o contrato de [`../docs/BACKEND-SPEC.md`](../docs/BACKEND-SPEC.md).
 
-Nenhuma implementação foi iniciada ainda.
-
+O reconhecimento de voz usa a Web Speech API do navegador e envia somente o texto transcrito ao backend.

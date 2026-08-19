@@ -1,5 +1,5 @@
 /* ============================================================
-   ContAI — landing page
+   Conta+ — landing page
    JavaScript puro. A página deve continuar legível sem ele.
    ============================================================ */
 
@@ -7,7 +7,7 @@
  * Destino do botão "Começar agora" e dos CTAs dos planos.
  * Vazio → a página apenas rola até a demonstração.
  * Preenchido → navega para o endereço informado.
- * Exemplo: const APP_URL = "https://app.contai.com.br";
+ * Exemplo: const APP_URL = "https://app.contamais.com.br";
  */
 const APP_URL = "";
 

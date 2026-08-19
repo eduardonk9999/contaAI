@@ -1,6 +1,6 @@
-# Homepage — ContAI
+# Homepage — Conta+
 
-Landing page institucional do ContAI.
+Landing page institucional do Conta+.
 
 ## Como abrir
 

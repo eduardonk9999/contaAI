@@ -1,5 +1,5 @@
 /* ============================================================
-   ContAI — landing page
+   Conta+ — landing page
    HTML5 + CSS3 puro, mobile-first. Sem framework, sem build.
    ============================================================ */
 
@@ -151,7 +151,7 @@ a:hover { color: var(--blue-dark); }
   flex: 0 0 auto;
 }
 .brand-text { font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; }
-.brand-ai { color: var(--blue); }
+.brand-plus { color: var(--blue); }
 
 .nav-toggle {
   display: inline-flex;

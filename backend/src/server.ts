@@ -1,12 +1,13 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
+import rateLimit from "@fastify/rate-limit";
 import { randomUUID } from "node:crypto";
 import { z } from "zod";
 import { database,DEMO_STORE_ID,migrate,seed } from "./database.js";
 import { buildSalePreview,confirmSale,interpretSaleText } from "./sales.js";
 
 migrate();seed();
-const app=Fastify({logger:true});await app.register(cors,{origin:true});
+const app=Fastify({logger:true});await app.register(cors,{origin:true});await app.register(rateLimit,{max:100,timeWindow:"1 minute"});
 const itemSchema=z.object({product_id:z.string().uuid(),quantity:z.number().positive(),unit_price_cents:z.number().int().nonnegative()});
 app.get("/health",async()=>({data:{status:"ok"}}));
 app.get("/v1/products",async()=>({data:database.prepare("SELECT id,name,cost_price_cents,sale_price_cents,stock_quantity,stock_unit,min_stock_quantity,active,created_at,updated_at FROM products WHERE store_id=? AND active=1 ORDER BY name").all(DEMO_STORE_ID)}));

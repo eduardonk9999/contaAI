@@ -1,4 +1,4 @@
-# Prompt para Codex - ContAI Backend
+# Prompt para Codex - Conta+ Backend
 
 Copie este prompt para o Codex ou outro agente de código.
 
@@ -7,7 +7,7 @@ Copie este prompt para o Codex ou outro agente de código.
 ## PROMPT
 
 ```
-Você vai implementar o backend do ContAI, um copiloto financeiro com controle de estoque para pequenos comerciantes brasileiros.
+Você vai implementar o backend do Conta+, um copiloto financeiro com controle de estoque para pequenos comerciantes brasileiros.
 
 ## Contexto do Projeto
 

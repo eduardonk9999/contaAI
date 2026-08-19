@@ -1,6 +1,6 @@
 {
-    "name": "contaai_app",
-    "short_name": "contaai_app",
+    "name": "Conta+",
+    "short_name": "Conta+",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,10 +1,10 @@
-# Prompt para Claude — Landing Page ContAI
+# Prompt para Claude — Landing Page Conta+
 
 Copie o conteúdo abaixo e envie ao Claude.
 
 ---
 
-Crie a landing page institucional do ContAI dentro de um novo diretório `landing/`.
+Crie a landing page institucional do Conta+ dentro de um novo diretório `landing/`.
 
 ## Restrições obrigatórias
 
@@ -19,7 +19,7 @@ Crie a landing page institucional do ContAI dentro de um novo diretório `landin
 
 ## Produto
 
-O ContAI é um copiloto financeiro com estoque para ambulantes, feirantes, pipoqueiros, MEIs e pequenos lojistas. O comerciante fala ou digita frases como “Vendi duas camisetas por cinquenta reais cada”. O sistema apresenta uma prévia e, após confirmação, registra a venda, atualiza estoque e calcula faturamento, custo, lucro e margem.
+O Conta+ é um copiloto financeiro com estoque para ambulantes, feirantes, pipoqueiros, MEIs e pequenos lojistas. O comerciante fala ou digita frases como “Vendi duas camisetas por cinquenta reais cada”. O sistema apresenta uma prévia e, após confirmação, registra a venda, atualiza estoque e calcula faturamento, custo, lucro e margem.
 
 ## Arquivos
 
@@ -50,11 +50,11 @@ landing/
 
 ### Header
 
-Marca `ContAI`, destacando `AI`; links Como funciona, Benefícios e Planos; botão “Conhecer o ContAI”; header fixo e menu mobile acessível.
+Marca `Conta+`, destacando `AI`; links Como funciona, Benefícios e Planos; botão “Conhecer o Conta+”; header fixo e menu mobile acessível.
 
 ### Hero
 
-Título: **Fale o que vendeu. O ContAI cuida das contas.**
+Título: **Fale o que vendeu. O Conta+ cuida das contas.**
 
 Texto: **Registre vendas por texto ou voz, acompanhe seu estoque e descubra quanto realmente sobrou no fim do dia.**
 
@@ -125,19 +125,19 @@ Destaque visualmente o Solo. Exiba: “Valores e limites sujeitos à validação
 
 Mostrar como exemplo, não promessa: **Para um vendedor com lucro de R$ 3 por unidade, o Solo equivale ao lucro de aproximadamente cinco vendas no mês.**
 
-Mensagem: **Se o ContAI evitar uma perda de estoque ou ajudar a corrigir o preço de um produto, a mensalidade pode se pagar no próprio dia.**
+Mensagem: **Se o Conta+ evitar uma perda de estoque ou ajudar a corrigir o preço de um produto, a mensalidade pode se pagar no próprio dia.**
 
 ### CTA
 
 Título: **Menos tempo fazendo conta. Mais tempo vendendo.**
 
-Texto: **Use grátis. Assine somente quando o ContAI já estiver ajudando seu negócio.**
+Texto: **Use grátis. Assine somente quando o Conta+ já estiver ajudando seu negócio.**
 
 Botão “Começar agora”. Defina uma constante `APP_URL` no início de `script.js`; se preenchida, navegue para ela, senão role até a demonstração.
 
 ### Footer
 
-ContAI; “Copiloto financeiro para pequenos negócios”; links internos Produto, Privacidade e Contato; ano atual via JavaScript.
+Conta+; “Copiloto financeiro para pequenos negócios”; links internos Produto, Privacidade e Contato; ano atual via JavaScript.
 
 ## JavaScript
 
@@ -148,7 +148,7 @@ Use somente para menu mobile, rolagem suave, animações com `IntersectionObserv
 - HTML semântico, CSS com variáveis em `:root`, acessibilidade, contraste e foco visível.
 - Layout correto em 360, 768 e 1440 px, sem overflow horizontal.
 - Metatags de viewport, descrição e compartilhamento.
-- Título: `ContAI — Fale o que vendeu. A gente cuida das contas.`
+- Título: `Conta+ — Fale o que vendeu. A gente cuida das contas.`
 - Sem Lorem Ipsum e sem afirmar disponibilidade comercial.
 - Teste links, botões, menu mobile e console.
 - Confirme que nenhum framework ou dependência foi usado.

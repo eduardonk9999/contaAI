@@ -1,193 +1,143 @@
 <div align="center">
 
-# 🧾 ContAI
+# 🧾 Conta+
 
-**Copiloto financeiro com controle de estoque para quem vende de verdade.**
+**Venda por voz, estoque e lucro para pequenos negócios.**
 
-*"vendi 3 camisetas por 50 reais cada"* → venda registrada, estoque baixado, lucro calculado.
+*“Vendi duas camisetas por cinquenta reais cada”* → venda estruturada, estoque atualizado e lucro calculado.
 
-<br>
-
-![Status](https://img.shields.io/badge/status-MVP%20em%20desenvolvimento-yellow?style=flat-square)
+![Status](https://img.shields.io/badge/status-MVP%20funcional-16a34a?style=flat-square)
 ![Backend](https://img.shields.io/badge/backend-Fastify%20%2B%20TypeScript-000000?style=flat-square&logo=fastify)
 ![App](https://img.shields.io/badge/app-Flutter-02569B?style=flat-square&logo=flutter)
-![Node](https://img.shields.io/badge/node-%E2%89%A522.5-339933?style=flat-square&logo=node.js&logoColor=white)
-![Licença](https://img.shields.io/badge/licen%C3%A7a-n%C3%A3o%20definida-lightgrey?style=flat-square)
 
 </div>
 
----
-
 ## O problema
 
-O pequeno comerciante — vendedor de pipoca, ambulante, lojista, MEI — controla o negócio de cabeça, no caderno ou no WhatsApp. Sistemas de gestão existem, mas exigem cadastro, navegação e disciplina que não cabem na correria da banca.
-
-Aí ele não sabe responder o básico: **quanto vendi hoje? quanto realmente lucrei? o que precisa repor?**
+Ambulantes, MEIs e pequenos lojistas frequentemente controlam vendas e estoque de cabeça, no caderno ou em ferramentas desconectadas. No fim do dia, sabem quanto entrou, mas nem sempre quanto realmente lucraram ou o que precisam repor.
 
 ## A solução
 
-O ContAI troca o formulário por uma frase. O comerciante fala ou digita naturalmente, e o sistema faz o resto:
+O **Conta+** permite registrar uma venda apenas falando ou digitando naturalmente:
 
+1. Transcreve a fala no navegador em português brasileiro.
+2. Interpreta produto, quantidade e preço.
+3. Exibe uma prévia antes de alterar qualquer dado.
+4. Calcula faturamento, custo, lucro e margem com regras determinísticas.
+5. Após a confirmação, registra a venda e atualiza o estoque atomicamente.
+
+O resumo financeiro é consequência da operação por voz — não a funcionalidade principal do produto.
+
+## Fluxo principal
+
+```text
+Fala do vendedor
+       ↓
+Reconhecimento de voz do navegador
+       ↓
+Texto enviado para POST /v1/sales/preview
+       ↓
+Produto + quantidade + preço + lucro + margem
+       ↓
+Prévia para conferência humana
+       ↓
+POST /v1/sales/confirm com source = VOICE
+       ↓
+Venda registrada + estoque atualizado
 ```
-  "vendi 3 camisetas por 50 reais cada"
-                  │
-                  ▼
-        ┌─────────────────────┐
-        │  IA interpreta      │   extrai produto, quantidade e preço
-        └─────────────────────┘
-                  │
-                  ▼
-        ┌─────────────────────┐
-        │  Backend calcula    │   custo, lucro, margem e impacto no estoque
-        │  (determinístico)   │   ⚠️  nada é gravado ainda
-        └─────────────────────┘
-                  │
-                  ▼
-        ┌─────────────────────┐
-        │  Prévia editável    │   o usuário revisa, corrige e confirma
-        └─────────────────────┘
-                  │
-                  ▼
-        ┌─────────────────────┐
-        │  Confirmação        │   venda + itens + baixa de estoque
-        │  atômica            │   em uma única transação de banco
-        └─────────────────────┘
-```
 
-O resultado é lucro em tempo real e alerta de reposição, sem o comerciante abrir uma planilha.
+O arquivo de áudio não é armazenado pelo Conta+. O navegador realiza o reconhecimento e envia somente o texto transcrito para a API.
 
----
+## Decisões de engenharia
 
-## Princípios de projeto
-
-Cinco decisões que atravessam todo o código. Elas não são detalhe de implementação — são o que mantém o dinheiro correto:
-
-| Princípio | Por quê |
-|---|---|
-| 💰 **Dinheiro em centavos, sempre inteiro** | `R$ 10,50` é `1050`. Zero erro de ponto flutuante em cálculo financeiro. |
-| 🧠 **A IA sugere, o backend decide** | O modelo extrai intenção. Dinheiro, custo, lucro, margem e estoque são calculados por regra determinística — nunca pelo LLM. |
-| 👁️ **Prévia não grava nada** | O preview é puro. Banco e estoque só mudam depois da confirmação explícita. |
-| 🧊 **Custo congelado na venda** | O item guarda o custo do momento. Mudar o preço do produto hoje não reescreve o lucro de ontem. |
-| ⚛️ **Confirmação atômica e idempotente** | Transação, itens e movimento de estoque numa transação só. Reenviar a mesma chave não duplica a venda. |
-
----
+- Dinheiro armazenado em centavos inteiros.
+- A prévia nunca altera o banco.
+- Custo do produto congelado no momento da venda.
+- Confirmação atômica e idempotente.
+- Cálculos financeiros determinísticos.
+- Conferência humana antes de alterar estoque ou valores.
+- Origem `VOICE`, `TEXT` ou `MANUAL` registrada em cada venda.
 
 ## Stack
 
 | Camada | Tecnologia |
 |---|---|
-| **API** | Fastify 5 + TypeScript (ESM) |
-| **Validação** | Zod |
-| **Banco (MVP local)** | SQLite via `node:sqlite` — destino: PostgreSQL/Supabase |
-| **IA** | OpenAI — interpretação de texto e transcrição de áudio |
-| **App** | Flutter |
+| Aplicativo | Flutter Web |
+| Voz | Web Speech API (`SpeechRecognition`) |
+| API | Fastify 5 + TypeScript |
+| Validação | Zod |
+| Banco do MVP | SQLite via `node:sqlite` |
+| Landing page | HTML, CSS e JavaScript puro |
 
----
-
-## Estrutura do repositório
+## Estrutura
 
 ```text
 contaai/
-├── app/                 # Aplicativo Flutter (não iniciado)
-├── backend/
-│   ├── src/
-│   │   ├── server.ts    # Rotas Fastify, validação e tratamento de erro
-│   │   ├── sales.ts     # Preview, interpretação de texto e confirmação de venda
-│   │   ├── database.ts  # Schema, migração e seed da loja de demonstração
-│   │   └── domain.ts    # Tipos do domínio
-│   └── postman/         # Coleção com os fluxos da API
-└── docs/                # Produto, regras de negócio, contrato e monetização
+├── app/          # Aplicativo Flutter responsivo
+├── backend/      # API, banco e regras financeiras
+├── homepage/     # Landing page institucional
+└── docs/         # Regras, modelagem e especificações
 ```
 
----
+## Executando o projeto
 
-## Rodando o backend
+Requisito do backend: Node.js 22.5 ou superior.
 
-**Requisito:** Node 22.5 ou superior (o projeto usa o módulo nativo `node:sqlite`).
+### Backend
 
 ```bash
-cd backend && npm install && npm run dev
+cd backend
+npm install
+npm run dev
 ```
 
-A API sobe em `http://localhost:3333`, cria o banco em `backend/data/contaai.db` e semeia uma loja de demonstração com três produtos: *Camiseta básica*, *Boné* e *Garrafa térmica*.
+A API será iniciada em `http://localhost:3333` e criará automaticamente a loja e os produtos de demonstração.
 
-Um teste rápido de ponta a ponta:
+### Aplicativo Flutter
+
+Em outro terminal:
 
 ```bash
-curl -s -X POST http://localhost:3333/v1/sales/preview -H 'Content-Type: application/json' -d '{"text":"vendi 3 camisetas por 50 reais cada"}'
+cd app
+flutter pub get
+flutter run -d chrome --dart-define=API_URL=http://localhost:3333
 ```
 
-A coleção do Postman em `backend/postman/` cobre o fluxo completo, do cadastro de produto ao dashboard.
+Para usar o microfone, abra pelo Chrome em `localhost` e permita o acesso quando solicitado.
 
-### Scripts
-
-| Comando | O que faz |
-|---|---|
-| `npm run dev` | Sobe a API com recarga automática |
-| `npm start` | Sobe a API |
-| `npm run typecheck` | Verifica os tipos sem gerar build |
-| `npm test` | Roda os testes (nenhum escrito ainda) |
-
----
-
-## Endpoints
+## Rotas principais
 
 | Método | Rota | Descrição |
 |---|---|---|
-| `GET` | `/health` | Verificação de saúde |
-| `GET` | `/v1/products` | Lista os produtos ativos da loja |
-| `POST` | `/v1/products` | Cadastra produto com estoque inicial auditável |
-| `POST` | `/v1/sales/preview` | Gera prévia a partir de `text` ou de `items` — **não grava nada** |
-| `POST` | `/v1/sales/confirm` | Confirma a venda e baixa o estoque atomicamente |
-| `GET` | `/v1/transactions` | Histórico de transações |
-| `GET` | `/v1/dashboard/summary` | Faturamento, custo, lucro, margem e valor em estoque |
+| `GET` | `/health` | Verifica a disponibilidade da API |
+| `GET` | `/v1/products` | Lista produtos e estoque |
+| `POST` | `/v1/products` | Cadastra um produto |
+| `POST` | `/v1/products/:productId/stock-adjustments` | Ajusta o estoque |
+| `POST` | `/v1/sales/preview` | Interpreta texto e calcula a prévia |
+| `POST` | `/v1/sales/confirm` | Confirma a venda e atualiza o estoque |
+| `GET` | `/v1/transactions` | Lista o histórico de vendas |
+| `GET` | `/v1/dashboard/summary` | Retorna o resumo financeiro e de estoque |
 
-Todas as respostas seguem o envelope `{ "data": ... }`; erros usam `{ "error": { "code", "message" } }`.
+## Demonstração
 
----
+> “Vendi duas camisetas por cinquenta reais cada.”
 
-## Estado atual
+Resultado esperado:
 
-**Funcionando no backend**
-
-- ✅ Cadastro e listagem de produtos, com movimento de estoque inicial
-- ✅ Prévia de venda por texto em português informal, incluindo números por extenso
-- ✅ Prévia de venda manual, por item
-- ✅ Avisos automáticos: estoque negativo, estoque baixo, preço fora do cadastro, margem negativa
-- ✅ Confirmação idempotente, com baixa de estoque e histórico de movimentação
-- ✅ Dashboard com faturamento, custo, lucro, margem e valor em estoque
-
-**Ainda não**
-
-- ⬜ Autenticação e múltiplas lojas — hoje há uma loja de demonstração fixa
-- ⬜ Entrada por áudio e transcrição
-- ⬜ Compras, despesas, receitas e cancelamento com estorno
-- ⬜ Alertas persistidos
-- ⬜ Migração para PostgreSQL/Supabase com RLS
-- ⬜ Aplicativo Flutter
-
----
-
-## Documentação
-
-| Documento | Conteúdo |
-|---|---|
-| [`docs/BUSINESS-RULES.md`](docs/BUSINESS-RULES.md) | Visão do produto, entidades e regras de negócio numeradas |
-| [`docs/BACKEND-SPEC.md`](docs/BACKEND-SPEC.md) | Contrato completo entre API e app Flutter |
-| [`docs/DATA-MODEL.md`](docs/DATA-MODEL.md) | Entidades, relacionamentos e corte do banco para o MVP |
-| [`docs/BUSINESS-MODEL.md`](docs/BUSINESS-MODEL.md) | Modelo de receita, planos e argumentação comercial |
-| [`docs/CODEX-PROMPT.md`](docs/CODEX-PROMPT.md) | Prompt inicial do projeto, preservado como referência histórica |
-
----
+- Faturamento: R$ 100,00
+- Custo: R$ 60,00
+- Lucro bruto: R$ 40,00
+- Margem: 40%
+- Estoque reduzido em duas unidades após a confirmação
 
 ## Modelo de negócio
 
-SaaS freemium. O plano gratuito reduz a barreira de entrada com cadastro de produtos, lançamentos manuais e um limite mensal de interpretações por IA. Os planos pagos liberam lançamento por voz, produtos ilimitados, dashboard completo e alertas — mantendo o custo de IA proporcional ao plano contratado.
+O Conta+ adota um modelo freemium: Gratuito (R$ 0), Solo (R$ 14,90/mês) e Pro (R$ 34,90/mês).
 
-Detalhes, hipóteses de preço e estratégia de aquisição em [`docs/BUSINESS-MODEL.md`](docs/BUSINESS-MODEL.md).
+Mais detalhes estão em [`docs/BUSINESS-MODEL.md`](docs/BUSINESS-MODEL.md).
 
 ---
 
 <div align="center">
-<sub>Feito para quem controla o negócio de cabeça, no caderno ou pelo WhatsApp.</sub>
+<sub>Menos tempo fazendo conta. Mais tempo vendendo.</sub>
 </div>

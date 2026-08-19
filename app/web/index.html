@@ -18,21 +18,56 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="Conta+ — venda por voz, estoque e lucro para pequenos negócios.">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="contaai_app">
+  <meta name="apple-mobile-web-app-title" content="Conta+">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>contaai_app</title>
+  <title>Conta+</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <script>
+    window.startContaPlusSpeechRecognition = function () {
+      return new Promise(function (resolve, reject) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+          reject(new Error('Reconhecimento de voz não suportado neste navegador.'));
+          return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'pt-BR';
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        recognition.onresult = function (event) {
+          resolve(event.results[0][0].transcript);
+        };
+        recognition.onerror = function (event) {
+          const messages = {
+            'not-allowed': 'permissão negada pelo navegador',
+            'service-not-allowed': 'serviço de voz bloqueado pelo navegador',
+            'network': 'serviço de reconhecimento de voz sem conexão',
+            'no-speech': 'nenhuma fala foi detectada',
+            'audio-capture': 'microfone indisponível ou usado por outro aplicativo',
+            'aborted': 'captura cancelada'
+          };
+          reject(new Error(messages[event.error] || event.error || 'falha ao reconhecer a fala'));
+        };
+        recognition.onnomatch = function () {
+          reject(new Error('Não foi possível entender a fala.'));
+        };
+        recognition.start();
+      });
+    };
+  </script>
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader
