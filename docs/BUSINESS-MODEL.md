@@ -6,98 +6,131 @@ O ContAI ajuda pequenos comerciantes a saber quanto venderam, quanto lucraram e 
 
 ## Modelo de receita
 
-O modelo inicial será SaaS freemium: uma versão gratuita para aquisição e validação, acompanhada de planos pagos por assinatura mensal ou anual.
+O modelo inicial será SaaS freemium, com uma versão gratuita para aquisição e validação e dois planos pagos. Os preços e limites são hipóteses comerciais iniciais e deverão ser validados com usuários reais.
 
-### Plano Grátis
+## Planos
 
-- Cadastro básico de produtos.
-- Controle básico de estoque.
-- Lançamentos manuais.
-- Limite mensal de interpretações por IA.
-- Resumo financeiro básico.
+### Gratuito — R$ 0
 
-Objetivo: reduzir a barreira de entrada e demonstrar valor antes da cobrança.
+- Até 20 produtos.
+- Lançamentos manuais ilimitados.
+- Até 30 interpretações de texto por mês.
+- Até 10 minutos de áudio por mês.
+- Dashboard dos últimos sete dias.
+- Uma conta e uma loja.
 
-### Plano Pro — hipótese de R$ 19,90 por mês
+### Solo — R$ 14,90 por mês
 
-- Mais lançamentos por texto e áudio.
+Indicado para ambulantes, feirantes, pipoqueiros, vendedores individuais e MEIs:
+
+- Até 100 produtos.
+- Até 300 lançamentos por IA por mês.
+- Até 60 minutos de áudio por mês.
+- Lançamentos manuais ilimitados.
+- Estoque e alertas.
+- Histórico de 90 dias.
+- Lucro e margem em tempo real.
+- Uma conta e uma loja.
+
+Hipótese anual: **R$ 149 por ano**. A mensalidade representa aproximadamente **R$ 0,50 por dia**.
+
+### Pro — R$ 34,90 por mês
+
+Indicado para pequenas lojas com maior volume:
+
 - Produtos ilimitados.
-- Dashboard completo.
-- Histórico ampliado.
-- Alertas inteligentes de estoque.
-- Relatórios de lucro e margem.
+- Até 2.000 lançamentos por IA por mês.
+- Até 300 minutos de áudio por mês.
+- Lançamentos manuais ilimitados.
+- Histórico completo.
+- Dashboard e relatórios completos.
+- Alertas inteligentes.
+- Categorias, filtros e exportação.
+- Até três usuários quando equipes forem implementadas.
 
-### Plano Negócio — hipótese de R$ 39,90 por mês
+Hipótese anual: **R$ 349 por ano**.
 
-- Todos os recursos do Pro.
-- Múltiplos funcionários.
-- Múltiplas lojas.
-- Exportação de relatórios.
-- Recursos e suporte avançados.
+### Loja — expansão futura
 
-Funcionários e múltiplas lojas são recursos futuros e não fazem parte do primeiro MVP.
+Um plano futuro, por aproximadamente **R$ 69,90 por mês**, poderá incluir múltiplos usuários, caixas e lojas, fornecedores e suporte prioritário. Não faz parte do MVP e não deve ser apresentado como disponível.
 
-### Plano anual
+## Franquias e uso adicional
 
-O plano anual poderá oferecer desconto equivalente a aproximadamente dois meses. Isso melhora retenção e antecipa receita.
+- Avisar quando o usuário atingir 80% do limite de IA ou áudio.
+- Lançamentos manuais continuam disponíveis após o fim da franquia.
+- Permitir aguardar a renovação, mudar de plano ou comprar pacote adicional.
+- Hipótese: 100 minutos adicionais de áudio por R$ 7,90.
+- Limites ajustáveis pelo backend, sem atualização do aplicativo.
 
-## Por que o usuário pagaria
+## Retorno percebido
 
-O valor não está apenas no controle de estoque. O ContAI permite que o comerciante responda rapidamente:
+Exemplo de vendedor de pipoca:
 
-- Quanto vendi hoje?
-- Quanto realmente lucrei?
-- Qual produto oferece maior margem?
-- Quais despesas estão reduzindo meu resultado?
-- Qual produto precisa ser reposto?
+```text
+Lucro por unidade: R$ 3,00
+Plano Solo: R$ 14,90
+Equivale ao lucro de aproximadamente cinco vendas no mês
+```
 
-O plano pago monetiza conveniência, economia de tempo e maior clareza para tomar decisões.
+Exemplo de pequena loja:
 
-## Hipótese econômica inicial
+```text
+Lucro médio por venda: R$ 20,00
+Plano Pro: R$ 34,90
+Equivale ao lucro de menos de duas vendas no mês
+```
 
-Exemplo para apresentação, ainda sujeito a validação:
+> Se o ContAI evitar uma perda de estoque ou ajudar a corrigir o preço de um produto, a mensalidade pode se pagar no próprio dia.
 
-| Indicador | Hipótese |
+Essa afirmação deve ser apresentada como exemplo, não como resultado comprovado.
+
+## Economia e margem do ContAI
+
+```text
+Margem bruta = (mensalidade - custos variáveis) / mensalidade × 100
+```
+
+Custos variáveis: transcrição, interpretação por IA, banco, armazenamento, gateway de pagamento, atendimento e impostos.
+
+| Indicador | Meta |
 |---|---:|
-| Mensalidade Pro | R$ 19,90 |
-| Custo mensal de infraestrutura e IA por usuário ativo | R$ 3,00 a R$ 7,00 |
-| Margem bruta potencial | 65% a 85% |
-| Clientes Pro | 1.000 |
-| Receita recorrente mensal | R$ 19.900,00 |
+| Custo variável máximo do Solo | R$ 4 por usuário/mês |
+| Custo variável máximo do Pro | R$ 9 por usuário/mês |
+| Margem bruta mínima | 70% |
 
-Esses números são hipóteses de planejamento, não resultados comprovados. Preço, limites e custo por usuário deverão ser validados em um piloto.
+Custos de aquisição, desenvolvimento e despesas administrativas não entram na margem bruta, mas devem entrar no cálculo do lucro operacional.
 
 ## Controle dos custos de IA
 
-- Lançamentos manuais permanecem disponíveis sem custo de IA.
-- Texto e áudio possuem limites conforme o plano.
-- O áudio pode ter limite de duração.
-- A API deve registrar consumo por loja para acompanhar custo e prevenir abuso.
-- O aplicativo pode avisar o usuário antes de atingir o limite do plano.
+- Texto e áudio possuem franquias por plano.
+- Áudio tem limite de duração por lançamento.
+- A API registra consumo por loja.
+- Requisições repetidas ou inválidas não consomem franquia indevidamente.
+- Nenhum plano promete IA ilimitada na fase inicial.
 
-## Estratégia inicial de aquisição
+## Aquisição inicial
 
-- Parcerias com contadores e escritórios de contabilidade.
+- Contadores e escritórios de contabilidade.
 - Associações comerciais e organizações de MEIs.
-- Feiras, vendedores ambulantes e pequenos distribuidores.
-- Programa de indicação entre comerciantes.
+- Feiras, ambulantes e pequenos distribuidores.
+- Indicação entre comerciantes.
 - Conteúdo educativo sobre preço, margem e estoque.
 
 ## Receitas futuras
 
 - Integração premium com contadores.
 - Marketplace ou indicação de fornecedores.
-- Serviços financeiros oferecidos por parceiros regulados.
+- Serviços financeiros por parceiros regulados.
 - Planos para associações, franquias e distribuidores.
-- Recursos avançados de análise e previsão.
+- Análises e previsões avançadas.
 
-Dados pessoais ou financeiros dos usuários não devem ser vendidos.
+Dados pessoais ou financeiros não devem ser vendidos.
 
 ## Resposta curta para jurados
 
-> O ContAI terá um modelo freemium por assinatura. O comerciante começa gratuitamente, cadastra seus produtos e controla as primeiras vendas. Quando incorpora o aplicativo à rotina, pode contratar o plano Pro para usar mais lançamentos por voz, relatórios completos, alertas e análises de lucro. Dessa forma, criamos receita recorrente e mantemos o custo de inteligência artificial proporcional ao plano contratado.
+> O ContAI adota um modelo freemium. O comerciante experimenta gratuitamente e pode contratar o plano Solo por R$ 14,90 por mês ou o Pro por R$ 34,90, conforme seu volume. As franquias de texto e áudio mantêm o produto acessível para o vendedor e o custo de inteligência artificial previsível para a empresa. Para um pipoqueiro, o Solo pode equivaler ao lucro de aproximadamente cinco vendas no mês.
 
 ## Diferencial competitivo
 
-> Sistemas tradicionais exigem operação complexa. O ContAI transforma uma frase ou áudio em venda, atualização de estoque e cálculo de lucro, sempre mostrando uma prévia para confirmação. A experiência é voltada a quem atualmente controla o negócio de cabeça, no caderno ou pelo WhatsApp.
+> O ContAI transforma uma frase ou áudio em venda, atualização de estoque e cálculo de lucro, sempre mostrando uma prévia para confirmação. A experiência atende quem hoje controla o negócio de cabeça, no caderno ou pelo WhatsApp.
 
