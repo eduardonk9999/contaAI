@@ -14,7 +14,7 @@
 
 ## O problema
 
-Ambulantes, MEIs e pequenos lojistas frequentemente controlam vendas e estoque de cabeça, no caderno ou em ferramentas desconectadas. No fim do dia, sabem quanto entrou, mas nem sempre quanto realmente lucraram ou o que precisam repor.
+Ambulantes, MEIs e pequenos lojistas frequentemente controlam vendas e estoque de cabeça, no caderno ou em ferramentas desconectadas. No fim do dia, sabem quanto entrou, mas nem sempre quanto realmente lucraram ou o que precisam repor...
 
 ## A solução
 
